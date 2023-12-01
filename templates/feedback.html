@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        .neat-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color:green;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          
+          .neat-button:hover {
+            background-color: #45a049;
+          }
+          
+        body {
+            background-color:black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .booked-message {
+            text-align: center;
+            font-size: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            animation: scaleIn 1s ease-in-out;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .booked-message p {
+            margin: 0;
+        }
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="bookedMessage" class="booked-message">
+        {{name}}
+        <p>Seat successfully booked! Enjoy your flight.</p>
+        Your Register No :{{verifycode}}
+    </div> 
+    <a href='http://127.0.0.1:8000/' class='neat-button'>GO TO HOME <a>
+</body>
+</html>

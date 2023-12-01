@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Airplane Ticket Booking</title>
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+     
+    }
+
+    .booking-form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .booking-form label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .booking-form input[type="text"],
+    .booking-form input[type="number"],
+    .booking-form input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .booking-form input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .booking-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="booking-form">
+    <h1>Airplane Ticket Booking</h1>
+    <form  method="POST" onsubmit="return validateForm()">
+    {% csrf_token %}
+      <div class="passenger">
+        <label for="passengerName">Name:</label>
+        <input type="text" id="passengerName" name="pname" required>
+
+        <label for="passengerEmail">Email:</label>
+        <input type="text" id="passengerEmail" name="pemail" required>
+
+        <label for="passengerAge">Age:</label>
+        <input type="number" id="passengerAge" name="page" required>
+
+        <label for="passengerDestination">Destination:</label>
+        <input type="text" id="passengerDestination" name="pdestini" required value={{place}}>
+
+        <label for="passengerDate">Date of Travel:</label>
+        <input type="date" id="passengerDate" name="pdate" required>
+
+        <label for="passengerPhone">Phone:</label>
+        <input type="text" id="passengerPhone" name="pphno" required>
+      </div>
+      <br>
+      <input type="submit" value="Book Now">
+    </form>
+  </div>
+  <script>
+    function validateForm() {
+      var nameInput = document.getElementById('passengerName');
+      var ageInput = document.getElementById('passengerAge');
+      var destInput = document.getElementById('passengerDestination');
+      var dateInput = document.getElementById('passengerDate');
+      var phoneInput = document.getElementById('passengerPhone');
+      var emailInput = document.getElementById('passengerEmail');
+
+      if (
+        nameInput.value === '' ||
+        ageInput.value === '' ||
+        destInput.value === '' ||
+        dateInput.value === '' ||
+        phoneInput.value === '' ||
+        emailInput.value === ''
+      ) {
+        alert('Please fill in all the fields.');
+        return false;
+      }
+
+      if (!validatePhone(phoneInput.value)) {
+        alert('Please enter a valid phone number.');
+        return false;
+      }
+
+      if (!validateEmail(emailInput.value)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+
+      return true;
+    }
+
+    function validatePhone(phone) {
+      // Regular expression to validate phone number (accepts 10 digits)
+      var phoneRegex = /^\d{10}$/;
+      return phoneRegex.test(phone);
+    }
+
+    function validateEmail(email) {
+      // Regular expression to validate email address
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+  </script>
+</body>
+</html>
